@@ -4,17 +4,14 @@
  */
 package entities;
 
-import java.io.IOException;
+import controllers.HouseController;
+import controllers.PhotoController;
 import java.io.InputStream;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
-import utilities.DatabaseDriver;
 
 /**
  *
@@ -28,8 +25,7 @@ public class House implements Serializable {
 	 * Creates a new instance of House
 	 */
 	public House() {
-		houses = db.ReadAll("house");
-		System.out.println(houses);
+		allHouses = hc.getAllHouses();
 	}
 
 	private String ville;
@@ -37,22 +33,13 @@ public class House implements Serializable {
 	private String prix;
 	private String categorie;
 	private String descriptif;
+	
+	private List<List<String>> allHouses;
+	
+	private final HouseController hc = new HouseController();
+	private final PhotoController pc = new PhotoController();
 
 	private Part uploadedPhoto;
-	private byte[] photo;
-
-	public Part getUploadedPhoto() {
-		return uploadedPhoto;
-	}
-
-	public void reload() throws IOException {
-		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-		ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
-	}
-
-	public void setUploadedPhoto(Part uploadedPhoto) {
-		this.uploadedPhoto = uploadedPhoto;
-	}
 
 	public String getVille() {
 		return ville;
@@ -94,28 +81,24 @@ public class House implements Serializable {
 		this.descriptif = descriptif;
 	}
 
-	public String insertHouse() {
+	public List<List<String>> getAllHouses() {
+		return allHouses;
+	}
+
+	public Part getUploadedPhoto() {
+		return uploadedPhoto;
+	}
+
+	public void setUploadedPhoto(Part uploadedPhoto) {
+		this.uploadedPhoto = uploadedPhoto;
+	}
+
+	public String addHouse(){
 		String data[] = {ville, adresse, prix, categorie, descriptif};
-		db.Insert("house", data);
-		try {
-			InputStream input = uploadedPhoto.getInputStream();
-			db.AddPhoto(input);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "index";
-	}
-	;
-	
-	private List<List<String>> houses;
-	private final DatabaseDriver db = new DatabaseDriver();
-
-	public List<List<String>> getHouses() {
-		return houses;
-	}
-
-	public void setHouses(List<List<String>> houses) {
-		this.houses = houses;
+		InputStream photo = 
+		hc.addHouse(data);
+		pc.AddPhoto(photo);
+		return "";
 	}
 
 }

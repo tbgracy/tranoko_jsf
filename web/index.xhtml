@@ -65,7 +65,7 @@
 			    <h:inputFile value="#{house.uploadedPhoto}" class="custom-file-input" id="customFile"/>
 			    <label class="custom-file-label" for="customFile">Choose a picture</label>
 			</div>
-			<h:commandButton value="Add" action="#{house.insertHouse()}" class="btn btn-primary"/>
+			<h:commandButton value="Add" action="#{house.addHouse()}" class="btn btn-primary"/>
 		    </h:form>
 		</div>
 	    </div>
@@ -80,7 +80,7 @@
 
 	    <div class="row no-gutters">
 		<!--<div class= "card-deck row">-->
-		<c:forEach items="#{house.houses}" var="house1">
+		<c:forEach items="#{house.allHouses}" var="house1">
 		    <div class="card col-lg-3 col-md-4">
 			<div class="card-body">
 			    <h5 class="card-title">#{house1.get(2)}, #{house1.get(1)} (#{house1.get(5)})</h5>
