@@ -6,6 +6,7 @@ package entities;
 
 import controllers.HouseController;
 import controllers.PhotoController;
+import java.io.IOException;
 import java.io.InputStream;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -33,9 +34,9 @@ public class House implements Serializable {
 	private String prix;
 	private String categorie;
 	private String descriptif;
-	
+
 	private List<List<String>> allHouses;
-	
+
 	private final HouseController hc = new HouseController();
 	private final PhotoController pc = new PhotoController();
 
@@ -93,11 +94,16 @@ public class House implements Serializable {
 		this.uploadedPhoto = uploadedPhoto;
 	}
 
-	public String addHouse(){
+	public String addHouse() {
 		String data[] = {ville, adresse, prix, categorie, descriptif};
-		InputStream photo = 
 		hc.addHouse(data);
-		pc.AddPhoto(photo);
+		try {
+			InputStream photo = uploadedPhoto.getInputStream();
+			pc.AddPhoto(photo);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return "";
 	}
 
