@@ -3,9 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/home/gracy/NetBeansProjects/tranoko/src/java/controllers/PhotoController.java</file>
             <file>file:/home/gracy/NetBeansProjects/tranoko/web/index.xhtml</file>
-            <file>file:/home/gracy/NetBeansProjects/tranoko/src/java/entities/House.java</file>
+            <file>file:/home/gracy/NetBeansProjects/tranoko/src/java/controllers/HouseController.java</file>
             <file>file:/home/gracy/NetBeansProjects/tranoko/src/java/utilities/DatabaseDriver.java</file>
+            <file>file:/home/gracy/NetBeansProjects/tranoko/src/java/entities/House.java</file>
         </group>
     </open-files>
 </project-private>

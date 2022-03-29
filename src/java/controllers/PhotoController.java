@@ -14,10 +14,13 @@ import utilities.DatabaseDriver;
  */
 public class PhotoController extends DatabaseDriver{
 	
-	public void AddPhoto(InputStream data){
+	public void AddPhoto(InputStream data, String proprio, int proprioID){
+		String sqlQuery = "insert into photo(data, " + proprio + "ID) values(?, ?)";
 		try{
-			prepStmt = connection.prepareStatement("insert into photo(data) values(?)");
+//			prepStmt = connection.prepareStatement("insert into photo(data) values(?)");
+			prepStmt = connection.prepareStatement(sqlQuery);
 			prepStmt.setBinaryStream(1, data);
+			prepStmt.setInt(2, proprioID);
 			prepStmt.executeUpdate();
 		}
 		catch(SQLException e){

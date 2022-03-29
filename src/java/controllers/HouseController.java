@@ -4,6 +4,7 @@
  */
 package controllers;
 
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,18 +15,40 @@ import utilities.DatabaseDriver;
  * @author gracy
  */
 public class HouseController extends DatabaseDriver {
+
+	private List<List> allHouses = new ArrayList();
+
+	private InputStream houseImage;
 	
-	private List<List<String>> allHouses = new ArrayList();
-	
-	public List<List<String>> getAllHouses() {
+	public List<List> getAllHouses() {
 		fetchHousesFromDb();
 		return allHouses;
 	}
 	
+	public InputStream getHouseImage(){
+		return houseImage;
+	}
+	
+	public void filterHouses(String data[]){
+		
+	}
+
+	public void photo(String id) {
+		String query = "select photo from house where houseID=" + id;
+		try {
+			resultSet = stmt.executeQuery(query);
+			if (resultSet.next()){
+				houseImage = resultSet.getBinaryStream("photo");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public void fetchHousesFromDb() {
 		String query = "select * from house";
 		int i = 0;
-		
+
 		try {
 			resultSet = stmt.executeQuery(query);
 			while (resultSet.next()) {
@@ -33,22 +56,24 @@ public class HouseController extends DatabaseDriver {
 				for (int j = 1; j < 9; j++) {
 					allHouses.get(i).add(resultSet.getString(j));
 				}
+				allHouses.get(i).add(resultSet.getBinaryStream("photo"));
 				i++;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			e.getMessage();
 		}
 	}
-	
-	public void addHouse(String data[]) {
+
+	public void addHouse(String data[], InputStream photo) {
 		try {
-			prepStmt = connection.prepareStatement("insert into house (ville, adresse, prix, categorie, descriptif) values(?, ?, ?, ?, ?)");
-			for (int i = 0; i < data.length; i++){
-				prepStmt.setString(i+1, data[i]);
+			prepStmt = connection.prepareStatement("insert into house (ville, adresse, prix, categorie, descriptif, photo) values(?, ?, ?, ?, ?, ?)");
+			for (int i = 0; i < data.length; i++) {
+				prepStmt.setString(i + 1, data[i]);
 			}
+			prepStmt.setBinaryStream(6, photo);
 			prepStmt.executeUpdate();
-		}
-		catch (SQLException e){
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}

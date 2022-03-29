@@ -33,6 +33,18 @@
 	    </nav>
 	</header>
 	<div class="container mt-3">
+	    <div class="jumbotron mx-5">
+		<h:form>
+		    <div class="form-group">
+			E-mail <h:inputText value="#{login.username}" class="form-control"/>
+		    </div>
+		    <div class="form-group">
+			Password <h:inputSecret value="#{login.password}" class="form-control"/>
+		    </div>
+		    <h:commandButton action="#{login.validateLogin}" value="Login" class="btn btn-primary"/>
+		    <p class="text-center">Not yet a member ? Waste no more time and <a href="register.xhtml">register</a>.</p>
+		</h:form>
+	    </div>
 	</div>
 
 	<footer class="bg-dark text-center text-white-50">

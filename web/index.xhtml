@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>tranoko</title>
 
@@ -72,9 +73,18 @@
 
 	    <div class="collapse" id="collapseFilter">
 		<div class="jumbotron">
-		    <form>
-
-		    </form>
+		    <h:form>
+			<div class="form-group">
+				Ville <h:inputText class="form-control" value="#{house.ville}"/>
+			</div>
+			<div class="form-group">
+				Prix <h:inputText class="form-control" value="#{house.prix}"/>
+			</div>
+			<div class="form-group">
+				Categorie <h:inputText class="form-control" value="#{house.categorie}"/>
+			</div>
+			<h:commandButton value="Filter" action="#{house.filterHouse()}" class="btn btn-primary"/>
+		    </h:form>
 		</div>
 	    </div>
 
@@ -82,6 +92,7 @@
 		<!--<div class= "card-deck row">-->
 		<c:forEach items="#{house.allHouses}" var="house1">
 		    <div class="card col-lg-3 col-md-4">
+			<img class="card-img-top" src="/tranoko/ImageServlet?proprioID=#{house1.get(0)}" alt="#{house1.get(8)}"/>
 			<div class="card-body">
 			    <h5 class="card-title">#{house1.get(2)}, #{house1.get(1)} (#{house1.get(5)})</h5>
 			    <h6 class="card-subtitle text-muted">#{house1.get(3)} Ar</h6>
