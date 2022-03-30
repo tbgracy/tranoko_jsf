@@ -5,12 +5,11 @@
 package entities;
 
 import controllers.HouseController;
-import controllers.PhotoController;
 import java.io.IOException;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.servlet.http.Part;
 
 /**
@@ -18,7 +17,7 @@ import javax.servlet.http.Part;
  * @author gracy
  */
 @Named(value = "house")
-@RequestScoped
+@SessionScoped
 public class House implements Serializable {
 
 	/**
@@ -37,7 +36,6 @@ public class House implements Serializable {
 	private List<List> allHouses;
 
 	private final HouseController hc = new HouseController();
-	private final PhotoController pc = new PhotoController();
 
 	private Part uploadedPhoto;
 

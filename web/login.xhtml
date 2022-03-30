@@ -36,10 +36,12 @@
 	    <div class="jumbotron mx-5">
 		<h:form>
 		    <div class="form-group">
-			E-mail <h:inputText value="#{login.username}" class="form-control"/>
+			E-mail <h:inputText id="username" value="#{login.email}" class="form-control"/>
+			<h:message for="username"></h:message>
 		    </div>
 		    <div class="form-group">
 			Password <h:inputSecret value="#{login.password}" class="form-control"/>
+			<h:message for="password"></h:message>
 		    </div>
 		    <h:commandButton action="#{login.validateLogin}" value="Login" class="btn btn-primary"/>
 		    <p class="text-center">Not yet a member ? Waste no more time and <a href="register.xhtml">register</a>.</p>
