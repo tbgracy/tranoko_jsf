@@ -72,9 +72,6 @@ public class HouseController extends DatabaseDriver {
 			for (int i = 0; i < data.length; i++) {
 				prepStmt.setString(i + 1, data[i]);
 			}
-			System.out.println("###############################");
-			System.out.println(Integer.valueOf(SessionUtils.getID()));
-			System.out.println("################################");
 			prepStmt.setBinaryStream(6, photo);
 			prepStmt.setInt(7, Integer.valueOf(SessionUtils.getID()));
 			prepStmt.executeUpdate();
