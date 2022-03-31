@@ -2,14 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSF/JSFManagedBean.java to edit this template
  */
-package entities;
+package models;
 
 import controllers.HouseController;
 import java.io.IOException;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.servlet.http.Part;
 
 /**
@@ -17,7 +17,7 @@ import javax.servlet.http.Part;
  * @author gracy
  */
 @Named(value = "house")
-@SessionScoped
+@RequestScoped
 public class House implements Serializable {
 
 	/**

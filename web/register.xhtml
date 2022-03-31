@@ -33,21 +33,25 @@
 	    </nav>
 	</header>
 	<div class="container mt-3">
-	    <div class="jumbotron mx-5">
-		<h:form>
+	    <div class="jumbotron col-6 mx-auto">
+		<h:form enctype="multipart/form-data">
 		    <div class="form-group">
-			First Name <h:inputText value="#{register.firstName}" class="form-control"/>
+			First Name <h:inputText value="#{user.prenom}" class="form-control"/>
 		    </div>
 		    <div class="form-group">
-			Last Name <h:inputText value="#{register.lastName}" class="form-control"/>
+			Last Name <h:inputText value="#{user.nom}" class="form-control"/>
 		    </div>
 		    <div class="form-group">
-			Mail address <h:inputSecret value="#{register.mail}" class="form-control"/>
+			Mail address <h:inputText value="#{user.email}" class="form-control"/>
 		    </div>
 		    <div class="form-group">
-			Password <h:inputText value="#{register.password}" class="form-control"/>
+			Password <h:inputSecret value="#{user.password}" class="form-control"/>
 		    </div>
-		    <h:commandButton action="#{register.validateRegistration}" value="Register" class="btn btn-primary text-center ml-auto"/>
+		    <div class="custom-file mb-3">
+			<h:inputFile value="#{user.photo}" class="custom-file-input" id="customFile"/>
+			<label class="custom-file-label" for="customFile">Choose a picture</label>
+		    </div>
+		    <h:commandButton action="#{user.addUser}" value="Register" class="btn btn-primary col-4 mx-auto"/>
 		    <p class="text-center">Already a member? Please <a href="login.xhtml">login</a>.</p>
 		</h:form>
 	    </div>

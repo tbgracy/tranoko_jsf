@@ -4,6 +4,7 @@
  */
 package controllers;
 
+import java.io.InputStream;
 import java.sql.SQLException;
 import utilities.DatabaseDriver;
 
@@ -12,7 +13,7 @@ import utilities.DatabaseDriver;
  * @author gracy
  */
 public class UserController extends DatabaseDriver {
-
+	
 	public boolean checkUser(String email, String password) {
 		try {
 			prepStmt = connection.prepareStatement("select email, password from user where email=? and password=md5(?)");
@@ -26,5 +27,18 @@ public class UserController extends DatabaseDriver {
 			e.printStackTrace();
 		}
 		return false;
+	}
+	
+	public void addUser(String data[], InputStream photo) {
+		try {
+			prepStmt = connection.prepareStatement("insert into user(nom, prenom, email, password, photo) values (?, ?, ?, md5(?), ?)");
+			for (int i = 0; i < data.length; i++) {
+				prepStmt.setString(i + 1, data[i]);
+			}
+			prepStmt.setBinaryStream(5, photo);
+			prepStmt.executeUpdate();
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
 	}
 }

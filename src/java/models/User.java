@@ -2,12 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSF/JSFManagedBean.java to edit this template
  */
-package entities;
+package models;
 
 import controllers.UserController;
+import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -29,7 +31,15 @@ public class User implements Serializable {
 	private String email;
 	private String password;
 	
-	// private PHOTO
+	private Part photo;
+
+	public Part getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(Part photo) {
+		this.photo = photo;
+	}
 	
 	private final UserController uc = new UserController();
 
@@ -66,6 +76,13 @@ public class User implements Serializable {
 	}
 	
 	public String addUser(){
-		return "";
+		String data[] = {nom, prenom, email, password};
+		try{
+			uc.addUser(data, photo.getInputStream());
+		} catch(IOException e){
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+		return "login";
 	}
 }

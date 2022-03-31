@@ -33,7 +33,7 @@
 	    </nav>
 	</header>
 	<div class="container mt-3">
-	    <div class="jumbotron mx-5">
+	    <div class="jumbotron col-4 mx-auto">
 		<h:form>
 		    <div class="form-group">
 			E-mail <h:inputText id="username" value="#{login.email}" class="form-control"/>
@@ -43,7 +43,7 @@
 			Password <h:inputSecret value="#{login.password}" class="form-control"/>
 			<h:message for="password"></h:message>
 		    </div>
-		    <h:commandButton action="#{login.validateLogin}" value="Login" class="btn btn-primary"/>
+		    <h:commandButton action="#{login.validateLogin}" value="Login" class="btn btn-primary mx-auto"/>
 		    <p class="text-center">Not yet a member ? Waste no more time and <a href="register.xhtml">register</a>.</p>
 		</h:form>
 	    </div>
