@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.servlet.http.Part;
+import utilities.SessionUtils;
 
 /**
  *
@@ -92,18 +93,18 @@ public class House implements Serializable {
 	}
 
 	public String addHouse() {
+		String userID = SessionUtils.getID();
 		String data[] = {ville, adresse, prix, categorie, descriptif};
-		try{
-		hc.addHouse(data, uploadedPhoto.getInputStream());
-		}
-		catch(IOException e){
+		try {
+			hc.addHouse(data, uploadedPhoto.getInputStream());
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 //		allHouses = hc.getAllHouses();
 		return "";
 	}
-	
-	public String filterHouse(){
+
+	public String filterHouse() {
 		return "";
 	}
 

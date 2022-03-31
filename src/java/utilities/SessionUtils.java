@@ -35,7 +35,7 @@ public class SessionUtils {
 	public static String getUserID(){
 		HttpSession session = getSession();
 		if(session != null) 
-			return (String) session.getAttribute("userid");
+			return (String) session.getAttribute("userID");
 		else
 			return null;
 	}

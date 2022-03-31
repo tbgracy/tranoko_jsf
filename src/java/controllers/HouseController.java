@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import utilities.DatabaseDriver;
+import utilities.SessionUtils;
 
 /**
  *
@@ -67,11 +68,15 @@ public class HouseController extends DatabaseDriver {
 
 	public void addHouse(String data[], InputStream photo) {
 		try {
-			prepStmt = connection.prepareStatement("insert into house (ville, adresse, prix, categorie, descriptif, photo) values(?, ?, ?, ?, ?, ?)");
+			prepStmt = connection.prepareStatement("insert into house (ville, adresse, prix, categorie, descriptif, photo, userID) values(?, ?, ?, ?, ?, ?, ?)");
 			for (int i = 0; i < data.length; i++) {
 				prepStmt.setString(i + 1, data[i]);
 			}
+			System.out.println("###############################");
+			System.out.println(Integer.valueOf(SessionUtils.getID()));
+			System.out.println("################################");
 			prepStmt.setBinaryStream(6, photo);
+			prepStmt.setInt(7, Integer.valueOf(SessionUtils.getID()));
 			prepStmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
