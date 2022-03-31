@@ -27,6 +27,11 @@ public class SessionUtils {
 		return session.getAttribute("email").toString();
 	}
 	
+	public static String getID(){
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+		return session.getAttribute("userID").toString();
+	}
+	
 	public static String getUserID(){
 		HttpSession session = getSession();
 		if(session != null) 

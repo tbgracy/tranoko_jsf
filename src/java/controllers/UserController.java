@@ -13,7 +13,22 @@ import utilities.DatabaseDriver;
  * @author gracy
  */
 public class UserController extends DatabaseDriver {
-	
+
+	public int getUserIdFrom(String email, String password) {
+		try {
+			prepStmt = connection.prepareStatement("select userID from user where email=? and password=md5(?)");
+			prepStmt.setString(1, email);
+			prepStmt.setString(2, password);
+			resultSet = prepStmt.executeQuery();
+			if (resultSet.next()) {
+				return resultSet.getInt("userID");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+
 	public boolean checkUser(String email, String password) {
 		try {
 			prepStmt = connection.prepareStatement("select email, password from user where email=? and password=md5(?)");
@@ -28,7 +43,7 @@ public class UserController extends DatabaseDriver {
 		}
 		return false;
 	}
-	
+
 	public void addUser(String data[], InputStream photo) {
 		try {
 			prepStmt = connection.prepareStatement("insert into user(nom, prenom, email, password, photo) values (?, ?, ?, md5(?), ?)");
@@ -37,7 +52,7 @@ public class UserController extends DatabaseDriver {
 			}
 			prepStmt.setBinaryStream(5, photo);
 			prepStmt.executeUpdate();
-		} catch (SQLException e){
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
