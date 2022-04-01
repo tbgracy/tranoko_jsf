@@ -10,6 +10,7 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.servlet.http.Part;
+import utilities.SessionUtils;
 
 /**
  *
@@ -24,6 +25,10 @@ public class User implements Serializable {
 	 */
 	public User() {
 		
+	}
+	
+	public int getCurrentUserID(){
+		return Integer.valueOf(SessionUtils.getID());
 	}
 	
 	private String nom;
