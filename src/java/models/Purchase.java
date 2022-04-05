@@ -4,8 +4,11 @@
  */
 package models;
 
+import java.sql.SQLException;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
+import utilities.DatabaseDriver;
+import utilities.SessionUtils;
 
 /**
  *
@@ -13,12 +16,25 @@ import javax.enterprise.context.Dependent;
  */
 @Named(value = "purchase")
 @Dependent
-public class Purchase {
-
-	/**
-	 * Creates a new instance of Purchase
-	 */
-	public Purchase() {
-	}
+public class Purchase extends DatabaseDriver {
 	
+	public String buy(String houseID){
+		String userID = SessionUtils.getID();
+		try{
+		prepStmt = connection.prepareStatement("insert into purchase values(?, ?, curdate())");
+		prepStmt.setInt(1, Integer.valueOf(houseID));
+		prepStmt.setInt(2, Integer.valueOf(userID));
+		prepStmt.executeUpdate();
+		
+		prepStmt = connection.prepareStatement("update house set disponible=0 where houseID=?");
+		prepStmt.setString(1, houseID);
+		prepStmt.executeUpdate();
+		}
+		catch (SQLException e){
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+		return "";
+	}
+
 }

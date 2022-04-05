@@ -9,6 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 	<h:outputStylesheet name="css/bootstrap.min.css"/>
 	<h:outputStylesheet name="css/all.css"/>
+	<link rel="shortcut icon" type="image/x-icon" href="resources/images/favicon.png"/> 
 
     </h:head>
     <h:body>
@@ -32,7 +33,10 @@
 			    <a href="settings.xhtml" class="nav-link"><i class="fas fa-gear"></i> Settings</a>
 			</li>
 			<li class="nav-item">
-			    <h:form class="form-inline"><h:commandLink action="#{login.logout}" class="nav-link"><i class="fas fa-arrow-right-from-bracket"></i> Logout</h:commandLink></h:form>
+			    <h:form class="form-inline"><h:commandLink action="#{login.logout}" class="nav-link"><i class="fas fa-arrow-right-from-bracket"></i> Logout</h:commandLink>
+				<img src="/tranoko/ImageServlet?proprioID=#{user.currentUserID}&amp;table=user" alt="#{user.currentUserID}" style="height:40px; width:40px; border-radius: 50%; border: solid yellow 2px"/>
+
+			    </h:form>
 			</li>
 		    </ul>
 		</div>

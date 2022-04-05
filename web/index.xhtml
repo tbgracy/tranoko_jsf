@@ -37,7 +37,7 @@
 			</li>
 			<li class="nav-item">
 			    <h:form class="form-inline"><h:commandLink action="#{login.logout}" class="nav-link"><i class="fas fa-arrow-right-from-bracket"></i> Logout</h:commandLink>
-				<img src="/tranoko/ImageServlet?proprioID=#{user.currentUserID}&amp;table=user" alt="#{user.currentUserID}" style="height:40px; width:40px; border-radius: 50%"/>
+				<img src="/tranoko/ImageServlet?proprioID=#{user.currentUserID}&amp;table=user" alt="#{user.currentUserID}" style="height:40px; width:40px; border-radius: 50%; border: solid yellow 2px"/>
 			    </h:form>
 			</li>
 		    </ul>
@@ -105,7 +105,14 @@
 			    <h5 class="card-title">#{house1.get(2)}, #{house1.get(1)} (#{house1.get(5)})</h5>
 			    <h6 class="card-subtitle text-muted">#{house1.get(3)} Ar</h6>
 			    <p>#{house1.get(6)}</p>
-			    <button class="btn btn-warning">Buy</button>
+			    <h:form class="form-inline">
+				<c:if test="#{house1.get(4) == 1}">
+				    <h:commandButton class="btn btn-warning" action="#{purchase.buy(house1.get(0))}" value="Buy"/>
+				</c:if>
+				<c:otherwise>
+				    <h:commandButton disabled="disabled" class="btn btn-warning disabled" value="Buy"/>
+				</c:otherwise>
+			    </h:form>
 			    <c:if test="#{house1.get(7) == user.currentUserID}">
 				<button class="btn btn-primary">Edit</button>
 				<button class="btn btn-danger">Del</button>
