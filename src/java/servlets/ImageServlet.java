@@ -5,6 +5,7 @@
 package servlets;
 
 import controllers.HouseController;
+import controllers.UserController;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -22,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ImageServlet extends HttpServlet {
 
 	private final HouseController hc = new HouseController();
+	private final UserController uc = new UserController();
 
 	@Override
 	public void doGet(HttpServletRequest request,
@@ -30,9 +32,16 @@ public class ImageServlet extends HttpServlet {
 		InputStream sImage;
 		try {
 			String id = request.getParameter("proprioID");
+			String table = request.getParameter("table");
 			System.out.println("inside servlet->" + id);
-			hc.photo(id);
-			sImage = hc.getHouseImage();
+			if (table.equals("house")){
+				hc.photo(id);
+				sImage = hc.getHouseImage();
+			}
+			else{
+				uc.photo(id);
+				sImage = uc.getUserImage();
+			}
 			byte[] bytearray = new byte[1048576];
 			int size;
 

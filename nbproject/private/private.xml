@@ -5,6 +5,7 @@
         <group>
             <file>file:/home/gracy/NetBeansProjects/tranoko/web/settings.xhtml</file>
             <file>file:/home/gracy/NetBeansProjects/tranoko/src/java/controllers/UserController.java</file>
+            <file>file:/home/gracy/NetBeansProjects/tranoko/src/java/servlets/ImageServlet.java</file>
             <file>file:/home/gracy/NetBeansProjects/tranoko/web/index.xhtml</file>
             <file>file:/home/gracy/NetBeansProjects/tranoko/web/WEB-INF/web.xml</file>
             <file>file:/home/gracy/NetBeansProjects/tranoko/src/java/controllers/HouseController.java</file>

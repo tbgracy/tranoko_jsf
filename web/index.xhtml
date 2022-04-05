@@ -36,7 +36,9 @@
 			    <a href="settings.xhtml" class="nav-link"><i class="fas fa-gear"></i> Settings</a>
 			</li>
 			<li class="nav-item">
-			    <h:form class="form-inline"><h:commandLink action="#{login.logout}" class="nav-link"><i class="fas fa-arrow-right-from-bracket"></i> Logout</h:commandLink></h:form>
+			    <h:form class="form-inline"><h:commandLink action="#{login.logout}" class="nav-link"><i class="fas fa-arrow-right-from-bracket"></i> Logout</h:commandLink>
+				<img src="/tranoko/ImageServlet?proprioID=#{user.currentUserID}&amp;table=user" alt="#{user.currentUserID}" style="height:20px; width:20px"/>
+			    </h:form>
 			</li>
 		    </ul>
 		</div>
@@ -85,9 +87,9 @@
 			</div>
 			<div class="form-check">
 			    <input class="form-check-input" type="checkbox" value="show_sold_out" id="defaultCheck2"/>
-				<label class="form-check-label" for="defaultCheck2">
-				    Show sold out houses
-				</label>
+			    <label class="form-check-label" for="defaultCheck2">
+				Show sold out houses
+			    </label>
 			</div>
 			<h:commandButton value="Filter" action="#{house.filterHouse()}" class="btn btn-primary"/>
 		    </h:form>
@@ -98,7 +100,7 @@
 		<!--<div class= "card-deck row">-->
 		<c:forEach items="#{house.allHouses}" var="house1">
 		    <div class="card col-lg-3 col-md-4">
-			<img class="card-img-top" src="/tranoko/ImageServlet?proprioID=#{house1.get(0)}" alt="#{house1.get(8)}"/>
+			<img class="card-img-top" src="/tranoko/ImageServlet?proprioID=#{house1.get(0)}&amp;table=house" alt="#{house1.get(8)}"/>
 			<div class="card-body">
 			    <h5 class="card-title">#{house1.get(2)}, #{house1.get(1)} (#{house1.get(5)})</h5>
 			    <h6 class="card-subtitle text-muted">#{house1.get(3)} Ar</h6>

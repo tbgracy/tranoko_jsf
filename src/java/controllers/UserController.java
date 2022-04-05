@@ -14,6 +14,13 @@ import utilities.DatabaseDriver;
  */
 public class UserController extends DatabaseDriver {
 
+	private InputStream userImage;
+
+	public InputStream getUserImage() {
+		return userImage;
+	}
+	
+	
 	public int getUserIdFrom(String email, String password) {
 		try {
 			prepStmt = connection.prepareStatement("select userID from user where email=? and password=md5(?)");
@@ -44,6 +51,18 @@ public class UserController extends DatabaseDriver {
 		return false;
 	}
 
+	public void photo(String id) {
+		String query = "select photo from user where userID=" + id;
+		try {
+			resultSet = stmt.executeQuery(query);
+			if (resultSet.next()){
+				userImage = resultSet.getBinaryStream("photo");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void addUser(String data[], InputStream photo) {
 		try {
 			prepStmt = connection.prepareStatement("insert into user(nom, prenom, email, password, photo) values (?, ?, ?, md5(?), ?)");
