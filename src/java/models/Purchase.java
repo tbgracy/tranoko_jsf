@@ -26,8 +26,8 @@ public class Purchase extends DatabaseDriver {
 		prepStmt.setInt(2, Integer.valueOf(userID));
 		prepStmt.executeUpdate();
 		
-		prepStmt = connection.prepareStatement("update house set disponible=0 where houseID=?");
-		prepStmt.setString(1, houseID);
+		prepStmt = connection.prepareStatement("update house set disponibilite=0 where houseID=?");
+		prepStmt.setInt(1, Integer.valueOf(houseID));
 		prepStmt.executeUpdate();
 		}
 		catch (SQLException e){

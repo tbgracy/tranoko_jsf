@@ -109,9 +109,9 @@
 				<c:if test="#{house1.get(4) == 1}">
 				    <h:commandButton class="btn btn-warning" action="#{purchase.buy(house1.get(0))}" value="Buy"/>
 				</c:if>
-				<c:otherwise>
-				    <h:commandButton disabled="disabled" class="btn btn-warning disabled" value="Buy"/>
-				</c:otherwise>
+				<c:if test="#{house1.get(4) == 0}">
+				    <h:commandButton disabled="disabled" class="btn btn-warning disabled" value="Buy (Already Sold)"/>
+				</c:if>
 			    </h:form>
 			    <c:if test="#{house1.get(7) == user.currentUserID}">
 				<button class="btn btn-primary">Edit</button>
