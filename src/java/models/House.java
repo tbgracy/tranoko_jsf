@@ -26,6 +26,8 @@ public class House implements Serializable {
 	 */
 	public House() {
 		allHouses = hc.getAllHouses();
+		villes = hc.getAllTowns();
+		categories =  hc.getAllCat();
 	}
 
 	private String ville;
@@ -33,8 +35,38 @@ public class House implements Serializable {
 	private String prix;
 	private String categorie;
 	private String descriptif;
+	
+	private String prixMax, prixMin;
+
+	public String getPrixMax() {
+		return prixMax;
+	}
+
+	public void setPrixMax(String prixMax) {
+		this.prixMax = prixMax;
+	}
+
+	public String getPrixMin() {
+		return prixMin;
+	}
+
+	public void setPrixMin(String prixMin) {
+		this.prixMin = prixMin;
+	}
+	
 
 	private List<List> allHouses;
+	
+	private List<String> villes;
+	private List<String> categories;
+
+	public List<String> getVilles() {
+		return villes;
+	}
+
+	public List<String> getCategories() {
+		return categories;
+	}
 
 	private final HouseController hc = new HouseController();
 

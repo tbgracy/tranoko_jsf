@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>tranoko</title>
 
@@ -37,7 +38,7 @@
 			</li>
 			<li class="nav-item">
 			    <h:form class="form-inline"><h:commandLink action="#{login.logout}" class="nav-link"><i class="fas fa-arrow-right-from-bracket"></i> Logout</h:commandLink>
-				<img src="/tranoko/ImageServlet?proprioID=#{user.currentUserID}&amp;table=user" alt="#{user.currentUserID}" style="height:40px; width:40px; border-radius: 50%; border: solid yellow 2px"/>
+				<img src="/tranoko/ImageServlet?proprioID=#{user.currentUserID}&amp;table=user" alt="#{user.currentUserID}" style="height:40px; width:40px; border-radius: 50%; border: solid yellow 2px; margin-left: .5em"/>
 			    </h:form>
 			</li>
 		    </ul>
@@ -77,19 +78,33 @@
 		<div class="jumbotron">
 		    <h:form>
 			<div class="form-group">
-			    Ville <h:inputText class="form-control" value="#{house.ville}"/>
+			    Ville
+			    <h:selectOneMenu class="custom-select" value="#{house.ville}">
+				<f:selectItems value="#{house.villes}"/>
+			    </h:selectOneMenu>
 			</div>
 			<div class="form-group">
-			    Prix <h:inputText class="form-control" value="#{house.prix}"/>
+			    <div class="container">
+				<div class="row">
+				    <div class="col">
+					Prix min<h:inputText class="form-control" value="#{house.prixMin}"/>
+				    </div>
+				    <div class="col">
+					Prix max<h:inputText class="form-control" value="#{house.prixMax}"/>
+				    </div>
+				</div>
+			    </div>
 			</div>
 			<div class="form-group">
-			    Categorie <h:inputText class="form-control" value="#{house.categorie}"/>
+			    Categorie<h:selectOneMenu class="custom-select" value="#{house.categorie}">
+				<f:selectItems value="#{house.categories}"/>
+			    </h:selectOneMenu>
 			</div>
-			<div class="form-check">
-			    <input class="form-check-input" type="checkbox" value="show_sold_out" id="defaultCheck2"/>
-			    <label class="form-check-label" for="defaultCheck2">
-				Show sold out houses
-			    </label>
+			<div class="form-group mx-auto">			    
+			    <h:selectOneRadio value="">
+				<f:selectItem class="form-check-input col" itemValue="show" itemLabel="Show sold houses"/>
+				<f:selectItem class="form-check-input col" itemValue="hide" itemLabel="Hide sold houses"/>
+			    </h:selectOneRadio>
 			</div>
 			<h:commandButton value="Filter" action="#{house.filterHouse()}" class="btn btn-primary"/>
 		    </h:form>
@@ -100,7 +115,7 @@
 		<!--<div class= "card-deck row">-->
 		<c:forEach items="#{house.allHouses}" var="house1">
 		    <div class="card col-lg-3 col-md-4">
-			<img class="card-img-top" src="/tranoko/ImageServlet?proprioID=#{house1.get(0)}&amp;table=house" alt="#{house1.get(8)}"/>
+			<img class="card-img-top" src="/tranoko/ImageServlet?proprioID=#{house1.get(0)}&amp;table=house" alt="#{house1.get(8)}" style="max-height: 10em"/>
 			<div class="card-body">
 			    <h5 class="card-title">#{house1.get(2)}, #{house1.get(1)} (#{house1.get(5)})</h5>
 			    <h6 class="card-subtitle text-muted">#{house1.get(3)} Ar</h6>
@@ -125,7 +140,7 @@
 
 	</div>
 
-	<footer class="bg-dark text-center text-white-50 fixed-bottom">
+	<footer class="bg-dark text-center text-white-50">
 	    &copy; Tsierenana Bôtramanagna Gracy
 	</footer>
 	<h:outputScript name="js/jquery-3.5.1.min.js"/>

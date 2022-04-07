@@ -21,6 +21,36 @@ public class HouseController extends DatabaseDriver {
 
 	private InputStream houseImage;
 	
+	public List<String> getAllTowns(){
+		List towns = new ArrayList();
+		
+		try {
+			resultSet = stmt.executeQuery("select distinct(ville) from house");
+			while (resultSet.next()){
+				towns.add(resultSet.getString("ville"));
+			}
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+		
+		return towns;
+	}
+	
+	public List<String> getAllCat(){
+		List cats = new ArrayList();
+		
+		try {
+			resultSet = stmt.executeQuery("select distinct(categorie) from house");
+			while (resultSet.next()){
+				cats.add(resultSet.getString("categorie"));
+			}
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+		
+		return cats;
+	}
+	
 	public List<List> getAllHouses() {
 		fetchHousesFromDb();
 		return allHouses;
