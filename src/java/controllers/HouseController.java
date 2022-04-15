@@ -18,59 +18,93 @@ import utilities.SessionUtils;
 public class HouseController extends DatabaseDriver {
 
 	private List<List> allHouses = new ArrayList();
+	private List<List> filteredHouses = new ArrayList();
+
+	public List<List> getFilteredHouses() {
+		return filteredHouses;
+	}
 
 	private InputStream houseImage;
-	
-	public List<String> getAllTowns(){
+
+	// write a function 
+	public List<String> getAllTowns() {
 		List towns = new ArrayList();
-		
+
 		try {
 			resultSet = stmt.executeQuery("select distinct(ville) from house");
-			while (resultSet.next()){
+			while (resultSet.next()) {
 				towns.add(resultSet.getString("ville"));
 			}
-		} catch (SQLException e){
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return towns;
 	}
-	
-	public List<String> getAllCat(){
+
+	public List<String> getAllCat() {
 		List cats = new ArrayList();
-		
+
 		try {
 			resultSet = stmt.executeQuery("select distinct(categorie) from house");
-			while (resultSet.next()){
+			while (resultSet.next()) {
 				cats.add(resultSet.getString("categorie"));
 			}
-		} catch (SQLException e){
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return cats;
 	}
-	
+
 	public List<List> getAllHouses() {
 		fetchHousesFromDb();
 		return allHouses;
 	}
-	
-	public InputStream getHouseImage(){
+
+	public InputStream getHouseImage() {
 		return houseImage;
-	}
-	
-	public void filterHouses(String data[]){
-		
 	}
 
 	public void photo(String id) {
 		String query = "select photo from house where houseID=" + id;
 		try {
 			resultSet = stmt.executeQuery(query);
-			if (resultSet.next()){
+			if (resultSet.next()) {
 				houseImage = resultSet.getBinaryStream("photo");
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void filterHouses(String ville, int prixMin, int prixMax, String categorie, boolean onlyDisponibles) {
+		String query = "select * from house where ville=? and prix between ? and ? and categorie=?";
+		if (onlyDisponibles) {
+			query += " and disponibilite=1";
+		}
+		int i = 0;
+		try {
+			String quer = "select * from house where ville=\""+ville+"\" and prix between "+prixMin+" and "+prixMax+" and categorie=\""+categorie+"\"";
+			resultSet = stmt.executeQuery(quer);
+//			prepStmt.setString(1, ville);
+//			prepStmt.setInt(2, prixMin);
+//			prepStmt.setInt(3, prixMax);
+//			prepStmt.setString(4, categorie);
+//			System.out.println(query);
+
+//			resultSet = prepStmt.executeQuery(query);
+			System.out.println(quer);
+
+			while (resultSet.next()) {
+				filteredHouses.add(new ArrayList());
+				for (int j = 1; j < 9; j++) {
+					filteredHouses.get(i).add(resultSet.getString(j));
+				}
+				filteredHouses.get(i).add(resultSet.getBinaryStream("photo"));
+				i++;
+			}
+			System.out.println(filteredHouses);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

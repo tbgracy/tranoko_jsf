@@ -27,16 +27,26 @@ public class House implements Serializable {
 	public House() {
 		allHouses = hc.getAllHouses();
 		villes = hc.getAllTowns();
-		categories =  hc.getAllCat();
+		categories = hc.getAllCat();
 	}
 
-	private String ville;
-	private String adresse;
-	private String prix;
-	private String categorie;
-	private String descriptif;
-	
-	private String prixMax, prixMin;
+	private String ville = "";
+	private String adresse = "";
+	private String prix = "";
+	private String categorie = "";
+	private String descriptif = "";
+	private String disponibilite = "";
+
+	public String getDisponibilite() {
+		return disponibilite;
+	}
+
+	public void setDisponibilite(String disponibilite) {
+		this.disponibilite = disponibilite;
+	}
+
+	private String prixMax = "";
+	private String prixMin = "";
 
 	public String getPrixMax() {
 		return prixMax;
@@ -53,10 +63,9 @@ public class House implements Serializable {
 	public void setPrixMin(String prixMin) {
 		this.prixMin = prixMin;
 	}
-	
 
 	private List<List> allHouses;
-	
+
 	private List<String> villes;
 	private List<String> categories;
 
@@ -132,11 +141,14 @@ public class House implements Serializable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-//		allHouses = hc.getAllHouses();
+		allHouses = hc.getAllHouses();
 		return "";
 	}
 
 	public String filterHouse() {
+		// TODO : make "true" dynamic
+		hc.filterHouses(ville, Integer.valueOf(prixMin), Integer.valueOf(prixMax), categorie, true);
+		allHouses = hc.getFilteredHouses();
 		return "";
 	}
 
