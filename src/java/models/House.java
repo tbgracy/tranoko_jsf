@@ -147,7 +147,14 @@ public class House implements Serializable {
 
 	public String filterHouse() {
 		// TODO : make "true" dynamic
-		hc.filterHouses(ville, Integer.valueOf(prixMin), Integer.valueOf(prixMax), categorie, true);
+		boolean avalaibleOnly = true;
+		if (disponibilite.equals("show")) {
+			avalaibleOnly = false;
+		}
+		else if (disponibilite.equals("hide")){
+			avalaibleOnly = true;
+		}
+		hc.filterHouses(ville, Integer.valueOf(prixMin), Integer.valueOf(prixMax), categorie, avalaibleOnly);
 		allHouses = hc.getFilteredHouses();
 		return "";
 	}

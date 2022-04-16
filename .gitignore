@@ -2,6 +2,8 @@ build/*
 ..gitignore*
 .gitignore~
 
+dist/tranoko.war
+
 # NetBeans specific #
 nbproject/private/
 build/
