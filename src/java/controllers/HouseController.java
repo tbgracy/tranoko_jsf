@@ -79,22 +79,19 @@ public class HouseController extends DatabaseDriver {
 	}
 
 	public void filterHouses(String ville, int prixMin, int prixMax, String categorie, boolean onlyDisponibles) {
-		String query = "select * from house where ville=\""+ville+"\" and prix between "+prixMin+" and "+prixMax+" and categorie=\""+categorie+"\"";
-//		String query = "select * from house where ville=? and prix between ? and ? and categorie=?";
+		String query = "select * from house where ville=? and prix between ? and ? and categorie=?";
 		if (onlyDisponibles) {
 			query += " and disponibilite=1";
 		}
 		int i = 0;
 		try {
-//			prepStmt = connection.prepareStatement(query);
-//			prepStmt.setString(1, ville);
-//			prepStmt.setInt(2, prixMin);
-//			prepStmt.setInt(3, prixMax);
-//			prepStmt.setString(4, categorie);
-			System.out.println(stmt);
+			prepStmt = connection.prepareStatement(query);
+			prepStmt.setString(1, ville);
+			prepStmt.setInt(2, prixMin);
+			prepStmt.setInt(3, prixMax);
+			prepStmt.setString(4, categorie);
 
-//			resultSet = prepStmt.executeQuery(query);
-			resultSet = stmt.executeQuery(query);
+			resultSet = prepStmt.executeQuery();
 
 			while (resultSet.next()) {
 				filteredHouses.add(new ArrayList());
