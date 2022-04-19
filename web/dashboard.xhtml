@@ -43,13 +43,49 @@
 	    </nav>
 	</header>
 	<div class="container mt-3">
+	    <canvas id="myChart">
+
+	    </canvas>
 	</div>
 
 	<footer class="bg-dark text-center text-white-50">
 	    &copy; Tsierenana Bôtramanagna Gracy
 	</footer>
 	<h:outputScript name="js/jquery-3.5.1.min.js"/>
+	<h:outputScript name="js/chart.js"/>
 	<h:outputScript name="js/bootstrap.bundle.min.js"/>
+	<script>
+                const labels = [
+                    'January',
+                    'February',
+                    'March',
+                    'April',
+                    'May',
+                    'June'
+                ];
+
+                const data = {
+                    labels: labels,
+                    datasets: [{
+                            label: 'My First dataset',
+                            backgroundColor: 'rgb(255, 99, 132)',
+                            borderColor: 'rgb(255, 99, 132)',
+                            data: [0, 10, 5, 2, 20, 30, 45]
+                        }]
+                };
+
+                const config = {
+                    type: 'bar',
+                    data: data,
+                    options: {}
+                };
+	</script>
+	<script>
+                const myChart = new Chart(
+                        document.getElementById('myChart'),
+                        config
+                        );
+	</script>
     </h:body>
 </html>
 

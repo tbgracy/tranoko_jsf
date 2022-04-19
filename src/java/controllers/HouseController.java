@@ -84,6 +84,7 @@ public class HouseController extends DatabaseDriver {
 			query += " and disponibilite=1";
 		}
 		int i = 0;
+		// TODO: manage null arguments for the filter, allowing more flexibility
 		try {
 			prepStmt = connection.prepareStatement(query);
 			prepStmt.setString(1, ville);
