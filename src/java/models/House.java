@@ -144,6 +144,8 @@ public class House implements Serializable {
 		allHouses = hc.getAllHouses();
 		return "";
 	}
+	
+
 
 	public String filterHouse() {
 		// TODO : make "true" dynamic

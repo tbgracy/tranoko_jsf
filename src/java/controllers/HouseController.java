@@ -141,4 +141,8 @@ public class HouseController extends DatabaseDriver {
 			e.printStackTrace();
 		}
 	}
+	
+	public void updateHouse(){
+		
+	}
 }

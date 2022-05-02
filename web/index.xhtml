@@ -127,11 +127,11 @@
 				<c:if test="#{house1.get(4) == 0}">
 				    <h:commandButton disabled="disabled" class="btn btn-warning disabled" value="Buy (Already Sold)"/>
 				</c:if>
+				<c:if test="#{house1.get(7) == user.currentUserID}">
+				    <button class="btn btn-primary m-2">Edit</button>
+				</c:if>
 			    </h:form>
-			    <c:if test="#{house1.get(7) == user.currentUserID}">
-				<button class="btn btn-primary">Edit</button>
-				<button class="btn btn-danger">Del</button>
-			    </c:if>
+
 			</div>
 		    </div>
 		</c:forEach>
