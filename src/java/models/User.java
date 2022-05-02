@@ -9,6 +9,7 @@ import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.List;
 import javax.servlet.http.Part;
 import utilities.SessionUtils;
 
@@ -24,7 +25,22 @@ public class User implements Serializable {
 	 * Creates a new instance of User
 	 */
 	public User() {
-		
+		userInfos = uc.fetchUserInfos(String.valueOf(getCurrentUserID()));
+	}
+	
+	public String updateUser(){
+		uc.updateUserInfos(String.valueOf(getCurrentUserID()), userInfos);
+		return "";
+	}
+	
+	private List<String> userInfos;
+
+	public List<String> getUserInfos() {
+		return userInfos;
+	}
+
+	public void setUserInfos(List<String> userInfos) {
+		this.userInfos = userInfos;
 	}
 	
 	public int getCurrentUserID(){

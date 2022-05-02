@@ -6,6 +6,8 @@ package controllers;
 
 import java.io.InputStream;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import utilities.DatabaseDriver;
 
 /**
@@ -19,8 +21,37 @@ public class UserController extends DatabaseDriver {
 	public InputStream getUserImage() {
 		return userImage;
 	}
-	
-	
+
+	public void updateUserInfos(String id, List<String> data) {
+		String query = "update user set nom=?, prenom=?, email=? where userID=?";
+		try {
+			prepStmt = connection.prepareStatement(query);
+			prepStmt.setString(1, data.get(1));
+			prepStmt.setString(2, data.get(0));
+			prepStmt.setString(3, data.get(2));
+			prepStmt.setString(4, id);
+
+			prepStmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public List<String> fetchUserInfos(String id) {
+		List<String> userInfos = new ArrayList();
+		try {
+			resultSet = stmt.executeQuery("select nom, prenom, email, password from user where userID=" + id);
+			if (resultSet.next()) {
+				userInfos.add(resultSet.getString("nom"));
+				userInfos.add(resultSet.getString("prenom"));
+				userInfos.add(resultSet.getString("email"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return userInfos;
+	}
+
 	public int getUserIdFrom(String email, String password) {
 		try {
 			prepStmt = connection.prepareStatement("select userID from user where email=? and password=md5(?)");
@@ -55,14 +86,14 @@ public class UserController extends DatabaseDriver {
 		String query = "select photo from user where userID=" + id;
 		try {
 			resultSet = stmt.executeQuery(query);
-			if (resultSet.next()){
+			if (resultSet.next()) {
 				userImage = resultSet.getBinaryStream("photo");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void addUser(String data[], InputStream photo) {
 		try {
 			prepStmt = connection.prepareStatement("insert into user(nom, prenom, email, password, photo) values (?, ?, ?, md5(?), ?)");

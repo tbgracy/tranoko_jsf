@@ -46,23 +46,20 @@
 	    <div class="jumbotron col-6 mx-auto">
 		<h:form enctype="multipart/form-data">
 		    <div class="form-group">
-			First Name <h:inputText value="#{user.prenom}" class="form-control"/>
+			First Name <h:inputText value="#{user.userInfos[1]}" class="form-control"/>
 		    </div>
 		    <div class="form-group">
-			Last Name <h:inputText value="#{user.nom}" class="form-control"/>
+			Last Name <h:inputText value="#{user.userInfos[0]}" class="form-control"/>
 		    </div>
 		    <div class="form-group">
-			Mail address <h:inputText value="#{user.email}" class="form-control"/>
+			Mail address <h:inputText value="#{user.userInfos[2]}" class="form-control"/>
 		    </div>
-		    <div class="form-group">
-			Password <h:inputSecret value="#{user.password}" class="form-control"/>
-		    </div>
-		    <h:commandButton action="#{user.addUser}" value="Update personal informations" class="btn btn-primary"/>
+		    <h:commandButton action="#{user.updateUser}" value="Update personal informations" class="btn btn-primary"/>
 		</h:form>
 	    </div>
 	</div>
 
-	<footer class="bg-dark text-center text-white-50">
+	<footer class="bg-dark text-center text-white-50 fixed-bottom">
 	    &copy; Tsierenana Bôtramanagna Gracy
 	</footer>
 	<h:outputScript name="js/jquery-3.5.1.min.js"/>
