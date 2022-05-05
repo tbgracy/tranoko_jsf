@@ -145,7 +145,10 @@ public class House implements Serializable {
 		return "";
 	}
 	
-
+	public String updateHouse() {
+		// TODO : implement this function
+		return "";
+	}
 
 	public String filterHouse() {
 		// TODO : make "true" dynamic

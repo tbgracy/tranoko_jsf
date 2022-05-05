@@ -1,0 +1,5 @@
+src/* languist-documentation=false
+src/* linguist-vendor
+
+web/* languist-documentation=false
+web/* linguist-vendor

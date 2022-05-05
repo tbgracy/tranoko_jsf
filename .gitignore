@@ -1,6 +1,7 @@
 build/*
 ..gitignore*
 .gitignore~
+*~
 
 dist/tranoko.war
 

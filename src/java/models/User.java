@@ -25,10 +25,11 @@ public class User implements Serializable {
 	 * Creates a new instance of User
 	 */
 	public User() {
-		userInfos = uc.fetchUserInfos(String.valueOf(getCurrentUserID()));
+//		userInfos = uc.fetchUserInfos(String.valueOf(getCurrentUserID()));
 	}
 	
 	public String updateUser(){
+		this.userInfos = uc.fetchUserInfos(String.valueOf(getCurrentUserID()));
 		uc.updateUserInfos(String.valueOf(getCurrentUserID()), userInfos);
 		return "";
 	}
@@ -36,7 +37,8 @@ public class User implements Serializable {
 	private List<String> userInfos;
 
 	public List<String> getUserInfos() {
-		return userInfos;
+//		return userInfos;
+		return uc.fetchUserInfos(String.valueOf(getCurrentUserID()));
 	}
 
 	public void setUserInfos(List<String> userInfos) {
