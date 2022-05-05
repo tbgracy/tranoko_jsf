@@ -115,7 +115,7 @@
 		<!--<div class= "card-deck row">-->
 		<c:forEach items="#{house.allHouses}" var="house1">
 		    <div class="card col-lg-3 col-md-4">
-			<img class="card-img-top" src="/tranoko/ImageServlet?proprioID=#{house1.get(0)}&amp;table=house" alt="#{house1.get(8)}" style="max-height: 10em"/>
+			<img class="card-img-top" src="/tranoko_jsf/ImageServlet?proprioID=#{house1.get(0)}&amp;table=house" alt="#{house1.get(8)}" style="max-height: 10em"/>
 			<div class="card-body">
 			    <div class="collapse show multi-collapse#{house1.get(0)}">
 				<h5 class="card-title">#{house1.get(2)}, #{house1.get(1)} (#{house1.get(5)})</h5>
