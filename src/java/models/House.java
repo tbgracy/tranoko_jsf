@@ -145,8 +145,9 @@ public class House implements Serializable {
 		return "";
 	}
 	
-	public String updateHouse() {
-		// TODO : implement this function
+	public String updateHouse(int houseId) {
+		List<String> house = allHouses.get(houseId);
+		hc.updateHouse(house.get(0), house.get(1), house.get(2), house.get(3), house.get(5), house.get(6));
 		return "";
 	}
 

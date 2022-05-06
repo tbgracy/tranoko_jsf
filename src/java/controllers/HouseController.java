@@ -142,7 +142,7 @@ public class HouseController extends DatabaseDriver {
 		}
 	}
 	
-	public void updateHouse(){
+	public void updateHouse(String houseID, String ville, String adresse, String prix, String categorie, String descriptif){
 		
 	}
 }

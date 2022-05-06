@@ -38,7 +38,7 @@
 			</li>
 			<li class="nav-item">
 			    <h:form class="form-inline"><h:commandLink action="#{login.logout}" class="nav-link"><i class="fas fa-arrow-right-from-bracket"></i> Logout</h:commandLink>
-				<img src="/tranoko/ImageServlet?proprioID=#{user.currentUserID}&amp;table=user" alt="#{user.currentUserID}" style="height:40px; width:40px; border-radius: 50%; border: solid yellow 2px; margin-left: .5em"/>
+				<img src="/tranoko_jsf/ImageServlet?proprioID=#{user.currentUserID}&amp;table=user" alt="#{user.currentUserID}" style="height:40px; width:40px; border-radius: 50%; border: solid yellow 2px; margin-left: .5em"/>
 			    </h:form>
 			</li>
 		    </ul>
@@ -115,7 +115,7 @@
 		<!--<div class= "card-deck row">-->
 		<c:forEach items="#{house.allHouses}" var="house1">
 		    <div class="card col-lg-3 col-md-4">
-			<img class="card-img-top" src="/tranoko/ImageServlet?proprioID=#{house1.get(0)}&amp;table=house" alt="#{house1.get(8)}" style="max-height: 10em"/>
+			<img class="card-img-top" src="/tranoko_jsf/ImageServlet?proprioID=#{house1.get(0)}&amp;table=house" alt="#{house1.get(8)}" style="max-height: 10em"/>
 			<div class="card-body">
 			    <h5 class="card-title">#{house1.get(2)}, #{house1.get(1)} (#{house1.get(5)})</h5>
 			    <h6 class="card-subtitle text-muted">#{house1.get(3)} Ar</h6>
