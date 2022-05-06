@@ -148,7 +148,7 @@
 				</div>
 				<h:commandButton class="btn btn-success" action="#{house.updateHouse(house.allHouses.indexOf(house1))}" value="Confirm Edit"/>
 			    </h:form>
-			    <c:if test="#{house1.get(7) == user.currentUserID}">
+			    <c:if test="#{house1.get(7) == user.currentUserID &amp;&amp; house1.get(4) == 1}">
 				<button class="btn btn-primary m-2" data-toggle="collapse" data-target=".multi-collapse#{house1.get(0)}" aria-expanded="false" aria-controls="multiCollapse#{house1.get(0)} multiCollapse">Toggle edit mode</button>
 			    </c:if>
 

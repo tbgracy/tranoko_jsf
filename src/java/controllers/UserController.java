@@ -24,10 +24,11 @@ public class UserController extends DatabaseDriver {
 
 	public void updateUserInfos(String id, List<String> data) {
 		String query = "update user set nom=?, prenom=?, email=? where userID=?";
+		System.out.println(data);
 		try {
 			prepStmt = connection.prepareStatement(query);
-			prepStmt.setString(1, data.get(1));
-			prepStmt.setString(2, data.get(0));
+			prepStmt.setString(1, data.get(0));
+			prepStmt.setString(2, data.get(1));
 			prepStmt.setString(3, data.get(2));
 			prepStmt.setString(4, id);
 

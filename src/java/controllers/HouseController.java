@@ -141,8 +141,21 @@ public class HouseController extends DatabaseDriver {
 			e.printStackTrace();
 		}
 	}
-	
-	public void updateHouse(String houseID, String ville, String adresse, String prix, String categorie, String descriptif){
-		
+
+	public void updateHouse(String houseID, String ville, String adresse, String prix, String categorie, String descriptif) {
+		String query = "update house set ville=?, adresse=?, prix=?, categorie=?, descriptif=? where houseID=?";
+		try {
+			prepStmt = connection.prepareStatement(query);
+			prepStmt.setString(1, ville);
+			prepStmt.setString(2, adresse);
+			prepStmt.setString(3, prix);
+			prepStmt.setString(4, categorie);
+			prepStmt.setString(5, descriptif);
+			prepStmt.setString(6, houseID);
+			
+			prepStmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

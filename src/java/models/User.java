@@ -25,15 +25,16 @@ public class User implements Serializable {
 	 * Creates a new instance of User
 	 */
 	public User() {
-//		userInfos = uc.fetchUserInfos(String.valueOf(getCurrentUserID()));
+		userInfos = uc.fetchUserInfos(String.valueOf(getCurrentUserID()));
+
 	}
-	
-	public String updateUser(){
-		this.userInfos = uc.fetchUserInfos(String.valueOf(getCurrentUserID()));
+
+	public String updateUser() {
+//		this.userInfos = uc.fetchUserInfos(String.valueOf(getCurrentUserID()));
 		uc.updateUserInfos(String.valueOf(getCurrentUserID()), userInfos);
 		return "";
 	}
-	
+
 	private List<String> userInfos;
 
 	public List<String> getUserInfos() {
@@ -44,16 +45,16 @@ public class User implements Serializable {
 	public void setUserInfos(List<String> userInfos) {
 		this.userInfos = userInfos;
 	}
-	
-	public int getCurrentUserID(){
+
+	public int getCurrentUserID() {
 		return Integer.valueOf(SessionUtils.getID());
 	}
-	
+
 	private String nom;
 	private String prenom;
 	private String email;
 	private String password;
-	
+
 	private Part photo;
 
 	public Part getPhoto() {
@@ -63,7 +64,7 @@ public class User implements Serializable {
 	public void setPhoto(Part photo) {
 		this.photo = photo;
 	}
-	
+
 	private final UserController uc = new UserController();
 
 	public String getNom() {
@@ -97,12 +98,12 @@ public class User implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	public String addUser(){
+
+	public String addUser() {
 		String data[] = {nom, prenom, email, password};
-		try{
+		try {
 			uc.addUser(data, photo.getInputStream());
-		} catch(IOException e){
+		} catch (IOException e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
